@@ -21,7 +21,10 @@ Route::get('/test',function(){
     echo time();
     
 });
-
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});
 
 Route::post('wspay-update', 'OptionController@wspayUpdate')->name('wspayUpdate');
 

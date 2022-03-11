@@ -547,7 +547,7 @@ $current_lang = get_current_language();
     ?>
     <!-- <header id="header" class="header {{$classSticky}}"> -->
     <div class="header-wrapper">
-        <header id="header" class="header header-home {{$classSticky}}">
+        <header id="header" class="header {{$classSticky}}">
         <span class="d-block d-lg-none" id="toggle-mobile-menu"><span class="top"></span><span class="center"></span><span
                 class="bottom"></span></span>
             <a href="{{ url('/') }}" id="logo">
@@ -556,7 +556,7 @@ $current_lang = get_current_language();
                 $logo_url = asset('images/logo.png');
                 ?>
                 <!-- <img src="{{ $logo_url }}" alt="img-logo" class="img-logo"> -->
-                <img alt="img-logo" class="img-logo home-img-logo">
+                <img alt="img-logo" class="img-logo">
             </a>
             <!-- <nav id="site-navigation" class="main-navigation d-none d-lg-block"
                  aria-label="Primary Menu"> -->

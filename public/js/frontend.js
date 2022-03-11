@@ -3048,20 +3048,20 @@ jQuery(document).ready(function () {
     $("#changeRule2Content").hide();
 
     $(window).scroll(function(){
-        var sticky = $('.header-home'),
+        var sticky = $('.header'),
         scroll = $(window).scrollTop();
         if (scroll >= 100){
             sticky.addClass('has-sticky');
-            $('.home-img-logo').attr('src','/images/logo.png');            
+            $('.img-logo').attr('src','/images/logo.png');            
         } else{
              sticky.removeClass('has-sticky');
-             $('.home-img-logo').attr('src','/images/logo_white.png');
+             $('.img-logo').attr('src','/images/logo_white.png');
         }
     });
     $(document).ready(function(){
-        var sticky = $('.header-home');
+        var sticky = $('.header');
         sticky.removeClass('has-sticky');
-        $('.home-img-logo').attr('src','/images/logo_white.png');
+        $('.img-logo').attr('src','/images/logo_white.png');
     });
 
 })(jQuery);

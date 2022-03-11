@@ -201,7 +201,7 @@ class HomeController extends Controller
                     $inCustom = false;
                     
                     foreach ($avaiItems['results'] as $avaiItem) {
-                        if ($i >= $avaiItem->start_date && $i <= $avaiItem->end_date) {
+                        if ($i >= $avaiItem->start_date && $i < $avaiItem->end_date) {
                             if ($avaiItem->booking_id == 0 && $avaiItem->total_minutes == 1440) {
                                 $status = 'not_available';
                                 $event = __('Unavailable');
@@ -262,7 +262,7 @@ class HomeController extends Controller
                     $event = convert_price($price);
                     $inCustom = false;
                     foreach ($avaiItems['results'] as $item) {
-                        if ($i >= $item->start_date && $i <= $item->end_date) {
+                        if ($i >= $item->start_date  && $i < $item->end_date) {
                             if ((int)$item->total >= $range_time) {
                                 $status = ($item->has_booking > 0) ? 'booked' : 'not_available';
                                 break;
@@ -1270,7 +1270,7 @@ class HomeController extends Controller
                 $status = true;
                 for ($i = $start; $i <= $end; $i = strtotime('+1 day', $i)) {
                     foreach ($avai['results'] as $item) {
-                        if ($i >= $item->start_date && $i <= $item->end_date) {
+                        if ($i >= $item->start_date && $i < $item->end_date) {
                             $status = false;
                             break;
                         }
@@ -1492,7 +1492,7 @@ class HomeController extends Controller
                     $event = convert_price($price);
                     $inCustom = false;
                     foreach ($avaiItems['results'] as $avaiItem) {
-                        if ($i >= $avaiItem->start_date && $i <= $avaiItem->end_date) {
+                        if ($i >= $avaiItem->start_date && $i < $avaiItem->end_date) {
                             if ($avaiItem->booking_id == 0 && $avaiItem->total_minutes == 1440) {
                                 $status = 'not_available';
                                 $event = 'Unavailable';
@@ -1586,7 +1586,7 @@ class HomeController extends Controller
                     $event = convert_price($price);
                     $inCustom = false;
                     foreach ($avaiItems['results'] as $item) {
-                        if ($i >= $item->start_date && $i <= $item->end_date) {
+                        if ($i >= $item->start_date && $i < $item->end_date) {
                             if ((int)$item->total >= $range_time) {
                                 $status = ($item->has_booking > 0) ? 'booked' : 'not_available';
                                 break;
@@ -1642,7 +1642,7 @@ class HomeController extends Controller
             $result = $times;
             foreach ($times as $key => $time) {
                 $timestamp = strtotime($date . ' ' . $key);
-                if ($timestamp < $start_date || $timestamp > $end_date) {
+                if ($timestamp < $start_date || $timestamp >= $end_date) {
                     unset($result[$key]);
                     continue;
                 }
@@ -2056,17 +2056,28 @@ class HomeController extends Controller
                     $status = 'available';
                     $event = convert_price($price);
                     $inCustom = false;
-                    foreach ($avaiItems['results'] as $avaiItem) {
-                        if ($i >= $avaiItem->start_date && $i <= $avaiItem->end_date) {
-                            if ($avaiItem->booking_id == 0 && $avaiItem->total_minutes == 1440) {
+                    foreach ($avaiItems['results'] as $avaiItem) 
+                    {
+                        if ($i >= $avaiItem->start_date && $i < $avaiItem->end_date) 
+                        {
+                            if ($avaiItem->booking_id == 0 && $avaiItem->total_minutes == 1440) 
+                            {
                                 $status = 'not_available';
                                 $event = 'Unavailable';
                                 break;
-                            } else {
+                            }
+                            else 
+                            {
                                 $status = 'booked';
                                 $event = __('Booked');
                                 break;
                             }
+                        }
+                        else if( $i == $avaiItem->end_date) 
+                        {
+                            $status = 'endday';
+                            $event = 'End_day';
+                            break;
                         }
                     }
                     if ($status == 'available') {
@@ -2120,7 +2131,7 @@ class HomeController extends Controller
                     $event = convert_price($price);
                     $inCustom = false;
                     foreach ($avaiItems['results'] as $item) {
-                        if ($i >= $item->start_date && $i <= $item->end_date) {
+                        if ($i >= $item->start_date && $i < $item->end_date) {
                             if ((int)$item->total >= $range_time) {
                                 $status = ($item->has_booking > 0) ? 'booked' : 'not_available';
                                 break;

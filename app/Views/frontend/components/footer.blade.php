@@ -127,7 +127,7 @@ enqueue_style('nice-select-css');
                 <ul class="social mt-3"> 
                     <li>
                     <li>
-                        <a href="https://play.google.com/store/apps"><img style="width:250px; height:75px;" src="/images/payment/google-play-store.jpg"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.luxurycroatiaretreats.app"><img style="width:250px; height:75px;" src="/images/payment/google-play-store.jpg"></a>
                     </li>
                 </ul>
             </div>

@@ -745,6 +745,13 @@ textarea.form-control {
     .awe-booking .availability-date-field .daterangepicker td.disabled {
       background: #BD180D !important;
     }
+    
+    .awe-booking .availability-date-field .daterangepicker td.endday {
+        background: #bd180d !important;
+    }
+    .awe-booking .availability-date-field .daterangepicker td.startday {
+        background: #bd180d !important;
+    }
     .awe-booking .daterangepicker .td-date.today .date {
       box-shadow: inset 0 0 0 1px var(--pink); }
     .awe-booking .daterangepicker .td-date.active .date, .awe-booking .daterangepicker .td-date.in-range .date {
@@ -782,6 +789,32 @@ textarea.form-control {
             .awe-booking .hh-availability .daterangepicker .calendar .table-condensed tr .disabled .date-outer .date {
               background: #BD180D !important;
               color: #fff !important;
+            }
+            .awe-booking
+                .hh-availability
+                .daterangepicker
+                .calendar
+                .table-condensed
+                tr
+                .endday
+                .date-outer
+                .date {
+                background-image: url(../images/lastday.png) !important;
+                background-color: #bd180d !important;
+                color: rgb(0, 0, 0) !important;
+            }
+            .awe-booking
+                .hh-availability
+                .daterangepicker
+                .calendar
+                .table-condensed
+                tr
+                .startday
+                .date-outer
+                .date {
+                background-image: url(../images/startday.png) !important;
+                background-color: #bd180d !important;
+                color: rgb(0, 0, 0) !important;
             }
             .awe-booking .hh-availability .daterangepicker .calendar .table-condensed tr .td-date .date-outer .date {
               position: absolute;
