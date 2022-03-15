@@ -2246,38 +2246,38 @@ jQuery(document).ready(function () {
         },
         responsiveForm: function (form) {
             /* Sticky sidebar */
-            if (typeof ScrollMagic === 'function') {
-                setTimeout(function () {
-                    let postDetails = document.querySelector(".single-home .col-content");
-                    let postSidebar = document.querySelector("#form-book-home");
+            // if (typeof ScrollMagic === 'function') {
+            //     setTimeout(function () {
+            //         let postDetails = document.querySelector(".single-home .col-content");
+            //         let postSidebar = document.querySelector("#form-book-home");
 
-                    let duration = $(postDetails).outerHeight() - ($(postSidebar).outerHeight() + parseFloat($(postSidebar).css('margin-top')));
-                    let controller = new ScrollMagic.Controller();
-                    let scene = new ScrollMagic.Scene({
-                        triggerElement: postSidebar,
-                        triggerHook: 0,
-                        duration: duration
-                    }).addTo(controller);
+            //         let duration = $(postDetails).outerHeight() - ($(postSidebar).outerHeight() + parseFloat($(postSidebar).css('margin-top')));
+            //         let controller = new ScrollMagic.Controller();
+            //         let scene = new ScrollMagic.Scene({
+            //             triggerElement: postSidebar,
+            //             triggerHook: 0,
+            //             duration: duration
+            //         }).addTo(controller);
 
-                    if (window.matchMedia("(min-width: 992px)").matches) {
-                        scene.setPin(postSidebar, {pushFollowers: false});
-                    }
-                    window.addEventListener('scroll', () => {
-                        if (body.hasClass('header-sticky-run')) {
-                            scene.offset($('#header-sticky-wrapper', body).height() * -1);
-                        } else {
-                            scene.offset(0);
-                        }
-                    });
-                    window.addEventListener("resize", () => {
-                        if (window.matchMedia("(min-width: 992px)").matches) {
-                            scene.setPin(postSidebar, {pushFollowers: false});
-                        } else {
-                            scene.removePin(postSidebar, true);
-                        }
-                    });
-                }, 1000);
-            }
+            //         if (window.matchMedia("(min-width: 992px)").matches) {
+            //             scene.setPin(postSidebar, {pushFollowers: false});
+            //         }
+            //         window.addEventListener('scroll', () => {
+            //             if (body.hasClass('header-sticky-run')) {
+            //                 scene.offset($('#header-sticky-wrapper', body).height() * -1);
+            //             } else {
+            //                 scene.offset(0);
+            //             }
+            //         });
+            //         window.addEventListener("resize", () => {
+            //             if (window.matchMedia("(min-width: 992px)").matches) {
+            //                 scene.setPin(postSidebar, {pushFollowers: false});
+            //             } else {
+            //                 scene.removePin(postSidebar, true);
+            //             }
+            //         });
+            //     }, 1000);
+            // }
         },
         addEvent: function (form) {
             let base = this;
@@ -3041,6 +3041,10 @@ jQuery(document).ready(function () {
         $('#hh-login-modal', body).modal('hide');
     });
 
+    $('#inquery-modal', body).on('show.bs.modal', function (ev) {
+        $('#inquery-modal', body).modal('hide');
+    });
+
     $(".load-more-content").hide();
 
     $("#changeRule1Content").hide();
@@ -3048,20 +3052,20 @@ jQuery(document).ready(function () {
     $("#changeRule2Content").hide();
 
     $(window).scroll(function(){
-        var sticky = $('.header'),
+        var sticky = $('.header-home'),
         scroll = $(window).scrollTop();
         if (scroll >= 100){
             sticky.addClass('has-sticky');
-            $('.img-logo').attr('src','/images/logo.png');            
+            $('.home-img-logo').attr('src','/images/logo.png');            
         } else{
              sticky.removeClass('has-sticky');
-             $('.img-logo').attr('src','/images/logo_white.png');
+             $('.home-img-logo').attr('src','/images/logo_white.png');
         }
     });
     $(document).ready(function(){
-        var sticky = $('.header');
+        var sticky = $('.header-home');
         sticky.removeClass('has-sticky');
-        $('.img-logo').attr('src','/images/logo_white.png');
+        $('.home-img-logo').attr('src','/images/logo_white.png');
     });
 
 })(jQuery);

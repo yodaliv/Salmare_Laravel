@@ -621,14 +621,14 @@ $code = [
                 <div class="row">
                     <div id="form-book-home" style="margin-top:0px; width: 100%;" class="form-book" data-real-price="{{url('get-home-price-realtime') }}">
                         <div class="popup-booking-form-close">{!! get_icon('001_close', '#fff', '28px', '28px') !!}</div>
-                        <div class="form-head">
-                            <!-- <div class="price-wrapper">
+                        <!-- <div class="form-head">
+                            <div class="price-wrapper">
                                 <span class="price">{{ convert_price($post->base_price) }}</span>
                                 @if($post->booking_type != 'external_link')
                                     <span class="unit">/{{$post->unit}}</span>
                                 @endif
-                            </div> -->
-                        </div>         
+                            </div>
+                        </div>     -->     
                         <div class="form-body" style="background:white;">
                             @include('common.loading', ['class' => 'booking-loading'])
                             @if($booking_form == 'instant_enquiry')
@@ -717,12 +717,16 @@ $code = [
                                     <div class="row">
                                         <div class="col-6 col-sm-6">
                                             <p style="color: white;font-weight:700 !important; ">{{sprintf(get_user_by_id($author->getUserId())->first_name )}}</p>
-                                            <p style="color:white;">Phone: {{sprintf(get_user_by_id($author->getUserId())->mobile )}}</p>
+                                            <!-- <p style="color:white;">Phone: {{sprintf(get_user_by_id($author->getUserId())->mobile )}}</p> -->
                                             <p style="color: white;">E-mail: {{sprintf(get_user_by_id($author->getUserId())->email )}}</p>
-                                            <a href="javascript:void(0)"
+                                            <!-- <a href="javascript:void(0)"
                                                class=" btn btn-contact-host btn-contact-agent d-inline-flex align-items-center button-contact-host-{{ $post->post_type }}"
                                                data-code="{{base64_encode(json_encode($code))}}"
                                                data-action="{{url('messenger/start-message')}}"
+                                            > -->
+                                            <a href="javascript:void(0)"
+                                               class=" btn btn-contact-host btn-contact-agent d-inline-flex align-items-center button-contact-host-{{ $post->post_type }}"
+                                               data-toggle="modal" data-target="#inquery-modal" id="contact-agent-id"
                                             >
                                                 <span class="d-inline-block meta-book-footer-btn" style="padding: 0.25rem 0.85rem; color: #fff; border: 1px solid #BE9F61; background-color: #BE9F61;">{{sprintf(__('Contact %s'), get_username($author->getUserId()) )}}</span>
                                                 <div class="spinner-border spinner-border-sm d-none ml-2" role="status">
@@ -827,6 +831,52 @@ $code = [
                     </div>
                     <a class="btn btn-primary action-button" id="mobile-check-availability">{{__('Check Availability')}}</a>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="inquery-modal" class="modal fade modal-no-footer" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-uppercase">{{__('Inquery')}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url('home-send-enquiry-form') }}" data-google-captcha="yes"
+                    data-validation-id="form-send-enquiry"
+                    class="form-action form-sm has-reset" data-loading-from=".form-body">
+                    <div class="form-group">
+                        <label for="full-name-enquiry-form">{{ __('Full Name') }} <span
+                                class="text-danger">*</span></label>
+                        <input id="full-name-enquiry-form" type="text" name="name"
+                            class="form-control has-validation" data-validation="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="email-enquiry-form">{{ __('Email') }} <span
+                                class="text-danger">*</span></label>
+                        <input id="email-enquiry-form" type="email" name="email"
+                            class="form-control has-validation"
+                            data-validation="required|email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-enquiry-form">{{ __('Message') }} <span
+                                class="text-danger">*</span></label>
+                        <textarea id="message-enquiry-form" class="form-control has-validation"
+                                name="message" data-validation="required"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block text-uppercase"
+                            name="sm"
+                            value="{{ __('Send a Request') }}">
+                    </div>
+                    <input type="hidden" name="post_id" value="{{ $post->post_id }}">
+                    <input type="hidden" name="post_encrypt"
+                        value="{{ hh_encrypt($post->post_id) }}">
+                    <div class="form-message"></div>
+                </form>
             </div>
         </div>
     </div>
